@@ -1,0 +1,677 @@
+Dim mD As Boolean
+Dim eraser As Boolean
+Dim tempColour As Long
+Dim PaintBucket As Boolean
+Dim sprayPaint As Boolean
+Dim Random As Integer
+Dim Random2 As Boolean
+Dim add As Integer
+Dim lineT As Boolean
+Dim line1Left As Integer
+Dim line1Top As Integer
+Dim TriangleT As Boolean
+Dim RectangleT As Boolean
+Dim CircleT As Boolean
+Dim RadiusX As Integer
+Dim RadiusY As Integer
+Dim pen As Boolean
+Dim tap As Integer
+
+Private Sub cmdPen_Click()
+
+pen = True
+
+lblBlack(9).BackColor = vbBlack
+
+For X = 0 To 3
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+For X = 5 To 8
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+sprayPaint = False
+PaintBucket = False
+eraser = False
+lineT = False
+RectangleT = False
+CircleT = False
+
+End Sub
+
+Private Sub Form_Load()
+
+lblBlack(2).BackColor = vbBlack
+
+End Sub
+
+Private Sub imgCircle_Click()
+
+CircleT = True
+
+lblBlack(8).BackColor = vbBlack
+
+lblBlack(9).BackColor = vbWhite
+
+For X = 5 To 7
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+For X = 0 To 4
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+tmrRandom.Enabled = False
+tmrRandomColours.Enabled = False
+lblRandom.BackColor = vbWhite
+sprayPaint = False
+PaintBucket = False
+eraser = False
+Random2 = False
+lineT = False
+TriangleT = False
+RectangleT = False
+pen = False
+
+End Sub
+
+Private Sub imgDecrease_Click()
+
+If picSize.DrawWidth = 5 Then
+
+    MsgBox "Cannot go any lower.", , "Error"
+
+Else
+
+    picSize.BackColor = &H80FFFF
+    picSize.DrawWidth = picSize.DrawWidth - 5
+    tmrSize.Enabled = True
+
+End If
+
+End Sub
+
+Private Sub imgEraser_Click()
+
+eraser = True
+PaintBucket = False
+sprayPaint = False
+
+lblBlack(0).BackColor = vbBlack
+
+For X = 1 To 4
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+Random2 = False
+tmrRandom.Enabled = False
+tmrRandomColours.Enabled = False
+lblRandom.BackColor = vbWhite
+lineT = False
+TriangleT = False
+RectangleT = False
+CircleT = False
+pen = False
+
+For X = 5 To 9
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+End Sub
+
+Private Sub imgIncrease_Click()
+
+If picSize.DrawWidth = 30 Then
+
+    MsgBox "Cannot go any higher.", , "Error"
+
+Else
+
+    picSize.BackColor = &H80FFFF
+    picSize.DrawWidth = picSize.DrawWidth + 5
+    tmrSize.Enabled = True
+
+End If
+
+End Sub
+
+Private Sub imgLine_Click()
+
+lineT = True
+
+lblBlack(5).BackColor = vbBlack
+
+For X = 6 To 9
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+For X = 0 To 4
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+tmrRandom.Enabled = False
+tmrRandomColours.Enabled = False
+lblRandom.BackColor = vbWhite
+sprayPaint = False
+PaintBucket = False
+eraser = False
+Random2 = False
+TriangleT = False
+RectangleT = False
+CircleT = False
+pen = False
+
+End Sub
+
+Private Sub imgPaintBucket_Click()
+
+PaintBucket = True
+eraser = False
+sprayPaint = False
+
+picX.BackColor = lblCurrentColour.BackColor
+lblBlack(1).BackColor = vbBlack
+
+For X = 2 To 4
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+lblBlack(0).BackColor = vbWhite
+
+Random2 = False
+tmrRandom.Enabled = False
+tmrRandomColours.Enabled = False
+lblRandom.BackColor = vbWhite
+lineT = False
+TriangleT = False
+RectangleT = False
+CircleT = False
+pen = False
+
+For X = 5 To 9
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+End Sub
+
+Private Sub imgPencil_Click()
+
+eraser = False
+PaintBucket = False
+sprayPaint = False
+
+lblBlack(2).BackColor = vbBlack
+
+For X = 0 To 1
+
+   lblBlack(X).BackColor = vbWhite
+
+Next X
+
+lblBlack(3).BackColor = vbWhite
+
+If Random2 = True Then
+
+    lblBlack(4).BackColor = vbBlack
+
+Else
+
+    lblBlack(4).BackColor = vbWhite
+
+End If
+
+lineT = False
+TriangleT = False
+RectangleT = False
+CircleT = False
+pen = False
+
+For X = 5 To 9
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+End Sub
+
+Private Sub imgRectangle_Click()
+
+RectangleT = True
+
+lblBlack(7).BackColor = vbBlack
+
+For X = 5 To 6
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+For X = 0 To 4
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+For X = 8 To 9
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+tmrRandom.Enabled = False
+tmrRandomColours.Enabled = False
+lblRandom.BackColor = vbWhite
+sprayPaint = False
+PaintBucket = False
+eraser = False
+Random2 = False
+lineT = False
+TriangleT = False
+CircleT = False
+pen = False
+
+End Sub
+
+Private Sub imgSpray_Click()
+
+sprayPaint = True
+PaintBucket = False
+
+lblBlack(3).BackColor = vbBlack
+
+For X = 0 To 2
+
+    lblBlack(X).BackColor = vbWhite
+    
+Next X
+
+If Random2 = True Then
+
+    lblBlack(4).BackColor = vbBlack
+
+Else
+
+    lblBlack(4).BackColor = vbWhite
+
+End If
+
+lineT = False
+TriangleT = False
+RectangleT = False
+CircleT = False
+pen = False
+
+For X = 5 To 9
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+End Sub
+
+Private Sub imgSwitch_Click()
+
+tempColour = lblOtherColour.BackColor
+lblOtherColour.BackColor = lblCurrentColour.BackColor
+lblCurrentColour.BackColor = tempColour
+
+End Sub
+
+Private Sub imgTriangle_Click()
+
+TriangleT = True
+
+lblBlack(6).BackColor = vbBlack
+
+lblBlack(5).BackColor = vbWhite
+
+For X = 7 To 9
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+For X = 0 To 4
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+tmrRandom.Enabled = False
+tmrRandomColours.Enabled = False
+lblRandom.BackColor = vbWhite
+sprayPaint = False
+PaintBucket = False
+eraser = False
+Random2 = False
+lineT = False
+RectangleT = False
+CircleT = False
+pen = False
+
+End Sub
+
+Private Sub lblClear_Click()
+
+Call Clear
+
+End Sub
+
+Private Sub lblColour_Click(Index As Integer)
+
+lblCurrentColour.BackColor = lblColour(Index).BackColor
+
+Random2 = False
+tmrRandom.Enabled = False
+tmrRandomColours.Enabled = False
+lblRandom.BackColor = vbWhite
+lblBlack(4).BackColor = vbWhite
+
+End Sub
+
+Private Sub lblRandom_Click()
+
+add = add + 1
+
+If add = 1 Then
+
+    tmrRandom.Enabled = True
+    tmrRandomColours.Enabled = True
+
+    Random2 = True
+
+    lblBlack(4).BackColor = vbBlack
+
+    For X = 0 To 1
+
+        lblBlack(X).BackColor = vbWhite
+
+    Next X
+
+ElseIf add = 2 Then
+
+    add = 0
+    Random2 = False
+    tmrRandom.Enabled = False
+    tmrRandomColours.Enabled = False
+    lblRandom.BackColor = vbWhite
+    lblBlack(4).BackColor = vbWhite
+
+End If
+
+If lineT = True Or TriangleT = True Or RectangleT = True Or CircleT = True Or pen = True Then
+
+    lineT = False
+    TriangleT = False
+    RectangleT = False
+    CircleT = False
+
+    For X = 5 To 8
+
+        lblBlack(X).BackColor = vbWhite
+
+    Next X
+
+    lblBlack(4).BackColor = vbBlack
+    lblBlack(2).BackColor = vbBlack
+    Random2 = True
+    tmrRandom.Enabled = True
+    tmrRandomColours.Enabled = True
+
+End If
+
+If lblBlack(9).BackColor = vbBlack Then
+
+    lblBlack(2).BackColor = vbWhite
+
+End If
+
+End Sub
+
+Private Sub mnuHelpS_Click(Index As Integer)
+
+Select Case Index
+
+    Case 0
+    
+        MsgBox "When using the tools on the right (Click and drag)", , "Help"
+    
+
+End Select
+
+End Sub
+
+Private Sub picX_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+
+mD = True
+
+If PaintBucket = True Then
+
+    mD = False
+
+Else
+
+    mD = True
+
+End If
+
+If eraser = True Then
+
+    picX.ForeColor = vbWhite
+
+Else
+
+    picX.ForeColor = lblCurrentColour.BackColor
+    eraser = False
+
+End If
+
+If sprayPaint = True Then
+
+    picX.ForeColor = lblCurrentColour.BackColor
+
+Else
+
+    sprayPaint = False
+
+End If
+
+If lineT = True Or TriangleT = True Or RectangleT = True Or CircleT = True Then
+
+    line1Left = X
+    line1Top = Y
+    
+End If
+
+If pen = True Then
+
+    picX.Line (X, Y)-(line1Left, line1Top)
+    line1Left = X
+    line1Top = Y
+    
+End If
+
+End Sub
+
+Private Sub picX_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+
+If mD = True And sprayPaint = False And lineT = False And TriangleT = False And RectangleT = False And CircleT = False And pen = False Then
+
+    picX.PSet (X, Y)
+
+ElseIf mD = True And sprayPaint = True Then
+
+    tmrSprayPaint.Enabled = True
+    
+    picX.PSet (X + Random, Y + Random)
+    picX.PSet (X + Random, Y + Random)
+    picX.PSet (X + Random, Y)
+    picX.PSet (X, Y + Random)
+    picX.PSet (X - Random, Y - Random)
+    picX.PSet (X - Random, Y - Random)
+    picX.PSet (X, Y - Random)
+    picX.PSet (X - Random, Y)
+
+Else
+
+    mD = False
+    
+End If
+
+End Sub
+
+Private Sub picX_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+
+mD = False
+
+If lineT = True Then
+
+    picX.Line (X, Y)-(line1Left, line1Top)
+
+ElseIf TriangleT = True Then
+
+    picX.Line (X, Y)-(line1Left, line1Top)
+    picX.Line (X, Y)-(line1Left, Y)
+    picX.Line (line1Left, line1Top)-(line1Left, Y)
+    
+ElseIf RectangleT = True Then
+
+    picX.Line (line1Left, Y)-(line1Left, line1Top)
+    picX.Line (X, Y)-(X, line1Top)
+    picX.Line (X, Y)-(line1Left, Y)
+    picX.Line (X, line1Top)-(line1Left, line1Top)
+
+ElseIf CircleT = True Then
+
+    RadiusX = Abs(line1Left - X)
+    RadiusY = Abs(line1Top - Y)
+
+    If line1Left > X Then
+
+        picX.Circle (line1Left, line1Top), Abs(RadiusX)
+        
+    End If
+
+    If line1Left < X Then
+        
+        picX.Circle (line1Left, line1Top), Abs(RadiusX)
+    
+    End If
+    
+    If line1Top > Y Then
+
+       picX.Circle (line1Left, line1Top), Abs(RadiusY)
+    
+    End If
+       
+        
+    If line1Top < Y Then
+
+        picX.Circle (line1Left, line1Top), Abs(RadiusY)
+
+   End If
+
+End If
+
+tmrSprayPaint.Enabled = False
+
+End Sub
+
+Private Sub tmrRandom_Timer()
+
+Randomize
+lblRandom.BackColor = QBColor(Rnd * 15)
+
+End Sub
+
+Private Sub tmrRandomColours_Timer()
+
+Randomize
+picX.ForeColor = QBColor(Rnd * 15)
+
+End Sub
+
+Private Sub tmrSize_Timer()
+
+picX.DrawWidth = picSize.DrawWidth
+picSize.Line (picSize.ScaleWidth / 2 - 300, picSize.ScaleHeight / 2)-(picSize.ScaleWidth / 2 + 300, picSize.ScaleHeight / 2)
+tmrSize.Enabled = False
+
+End Sub
+
+Private Sub tmrSprayPaint_Timer()
+
+Randomize
+Random = Rnd * 500 + 1
+
+End Sub
+
+Public Sub Clear()
+
+'Tools
+eraser = False
+PaintBucket = False
+Random2 = False
+add = 0
+sprayPaint = False
+lblRandom.BackColor = vbWhite
+tmrRandom.Enabled = False
+tmrRandomColours.Enabled = False
+lblOtherColour.BackColor = vbWhite
+lblCurrentColour.BackColor = vbBlack
+picX.BackColor = vbWhite
+lineT = False
+TriangleT = False
+RectangleT = False
+CircleT = False
+pen = False
+
+'Black labels
+lblBlack(2).BackColor = vbBlack
+
+For X = 0 To 1
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+For X = 3 To 4
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+For X = 5 To 9
+
+    lblBlack(X).BackColor = vbWhite
+
+Next X
+
+'Size
+picSize.BackColor = &H80FFFF
+picSize.DrawWidth = 5
+tmrSize.Enabled = True
+
+End Sub
+
